@@ -1,0 +1,32 @@
+name: CI/CD Hospital
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Login a Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Construir y Subir
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: chewi9/springuma:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Actualizar Kubernetes local
+        run: kubectl rollout restart deployment backend-app -n ips
