@@ -48,6 +48,7 @@ docker push chewi9/springuma:latest
 (Kubernetes)
 Dentro de carpeta k8s
 Deployment.yaml
+```k8s/deplotment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -69,8 +70,10 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+```
 
 Service.yaml
+```k8s/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -84,6 +87,7 @@ spec:
     - protocol: TCP
       port: 8080
       nodePort: 30007
+```
 
 kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
@@ -101,6 +105,7 @@ DOCKERHUB_TOKEN: el token que creaste en la Fase 1.
 Se crea carpeta .github/workflows
 
 ci-cd.yml
+```ci-cd.yml
 name: CI/CD Hospital
 
 on:
@@ -133,7 +138,7 @@ jobs:
     steps:
       - name: Actualizar Kubernetes local
         run: kubectl rollout restart deployment backend-app -n ips
-
+```
 
 Para activar todo el workflow
 git add .
