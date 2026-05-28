@@ -159,3 +159,13 @@ Cierra la terminal y ábrela haciendo clic derecho -> Ejecutar como Administrado
 
 - Tokens cruzados	
 Recuerda: GitHub Runner usa un token temporal automático que te da la web al instalarlo. El archivo .yml necesita el token creado en Docker Hub. No los mezcles.
+
+
+
+
+Guia pr6
+Badges
+> ⚠️ Replace `<YOUR_USER>` and `<YOUR_REPO>` with your actual GitHub account details.
+[![Java CI with Maven and Jacoco](https://github.com/Chewi9/Practica6/actions/workflows/main.yml/badge.svg)](https://github.com/Chewi9/Practica6/actions/workflows/main.yml)
+![Coverage](.github/badges/jacoco.svg)
+
